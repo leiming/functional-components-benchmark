@@ -1,8 +1,7 @@
 import React from "react";
 import { render } from 'react-dom';
 
-const Dot = (props) =>
-  <span>.</span>;
+const Dot = (props) => <span>.</span>;
 
 class DotComponent extends React.Component {
   render() {
@@ -16,19 +15,18 @@ class DotPureComponent extends React.PureComponent {
   }
 }
 
+const kinds = new Map([
+  ['stateful', <DotComponent />],
+  ['stateless-functional-mounted', <Dot/>],
+  ['pure-component', <DotPureComponent />],
+  ['stateless-functional-direct-call', Dot()],
+])
+
 class Main extends React.Component {
   render() {
-    var dots = Array(500).fill(0).map(x => {
-      if (this.props.kind == 'stateless-functional-direct-call') {
-        return Dot();
-      } else if (this.props.kind == 'stateless-functional-mounted') {
-        return <Dot/>;
-      } else if (this.props.kind == 'stateful') {
-        return <DotComponent />;
-      } else if (this.props.kind == 'pure-component') {
-        return <DotPureComponent />;
-      }
-    })
+    var dots = Array(500).fill(0).map(x =>
+      // DO NOT only use (kinds.get(this.props.kind))
+      (React.cloneElement(kinds.get(this.props.kind))))
     return React.createElement('div', {}, ...dots);
   }
 }
