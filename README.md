@@ -1,4 +1,4 @@
-![Benchmark gif](http://i.imgur.com/ufZeDFd.gif)
+![Benchmark gif](http://static.zybuluo.com/leiming/4jfm39uxj4ssg3yasnw7a08x/react-benchmark.gif)
 
 # Run
 
